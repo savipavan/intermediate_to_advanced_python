@@ -5,6 +5,7 @@ Development steps:
 - Writing methods for each class
 - Calling the classes and their methods
 """
+from random import randint
 
 
 class Point:
@@ -28,19 +29,26 @@ class Rectangle:
         self.lowleft = lowleft
         self.upright = upright
 
+    def area(self):
+        return (self.upright.x - self.lowleft.x) * (self.upright.y - self.lowleft.y)
 
-from random import randint
-
+# Create rectangle object
 rectangle = Rectangle(Point(randint(0, 9), randint(0, 9)), Point(randint(10, 19), randint(10, 19)))
 
+# Print rectangle coordinates
 print("Rectangle Coordinates: ",
       rectangle.lowleft.x, ",",
       rectangle.lowleft.y, "and",
       rectangle.upright.x, ",",
       rectangle.upright.y)
 
+# Get point and area from user
 user_point = Point(float(input("Guess X: ")),
                    float(input("Guess Y: ")))
+user_area = float(input("Guess rectangle area: "))
 
+# Print out the game results
 print("Your point was inside rectangle: ",
       user_point.falls_in_rectangle(rectangle))
+
+print("Your area was off by: ", rectangle.area() - user_area)
